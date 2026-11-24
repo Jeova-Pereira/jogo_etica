@@ -1,0 +1,144 @@
+<!DOCTYPE html><html lang="pt-BR"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Trilha d’Água: Pecém</title>
+<style>
+:root{--bg:#f3e9d6;--fg:#2b2118;--card:#fff8ea;--c:#2e7d5b;--d:#b5472f;--w:#1ea7e1;--line:#8a7357;--bd:#d9c8a6;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#1d1812;--fg:#f1e6d0;--card:#2a231a;--line:#a08a68;--bd:#4a3e2c;color-scheme:dark}}
+:root[data-theme="dark"]{--bg:#1d1812;--fg:#f1e6d0;--card:#2a231a;--line:#a08a68;--bd:#4a3e2c;color-scheme:dark}
+html,body{margin:0;background:var(--bg);color:var(--fg);font:14px system-ui,sans-serif}
+body{max-width:640px;margin:auto;padding:8px}
+h1{font:700 22px Georgia,serif;margin:4px 0 0;letter-spacing:.5px;color:#7a3f1d}@media (prefers-color-scheme:dark){:root:not([data-theme="light"]) h1{color:#f0b46a}}.sub{font-size:12px;opacity:.75;margin-bottom:4px}.wv{animation:pu 3s infinite}
+.card{background:var(--card);border:1px solid var(--bd);border-radius:12px;padding:8px;margin:6px 0;box-shadow:0 2px 6px #0002}
+.row{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
+.bar{height:10px;background:var(--bd);border-radius:6px;overflow:hidden;flex:1;min-width:80px}
+.bar i{display:block;height:100%;transition:width .4s}
+.sc{flex:1;min-width:140px}
+button{font:inherit;background:var(--card);color:var(--fg);border:1px solid var(--line);border-radius:8px;padding:6px 10px;cursor:pointer}
+button:hover{border-color:var(--w)}
+svg{width:100%;height:auto;display:block;border:3px solid #6b4e2e;border-radius:14px;box-shadow:0 4px 14px #0004;overflow:hidden}
+.shake{animation:sh .4s infinite}@keyframes sh{0%,100%{transform:translateX(0)}50%{transform:translateX(2px)}}
+.pulse{animation:pu 1s infinite}@keyframes pu{50%{opacity:.35}}
+#toast{font-weight:600;min-height:20px}
+#log{font-size:12px;opacity:.8;max-height:90px;overflow:auto}
+#ov{position:fixed;inset:0;background:#000a;display:none;align-items:center;justify-content:center;padding:16px;z-index:5}
+#ov div{background:var(--card);border-radius:12px;padding:16px;max-width:420px}
+.tag{display:inline-block;padding:1px 7px;border-radius:9px;color:#fff;font-size:12px}
+</style></head><body>
+<h1>💧 Trilha d’Água: Pecém</h1><div class="sub">Sertão, porto e aquífero: a água é uma só.</div>
+<div class="card" id="top"></div>
+<div id="toast"></div>
+<svg id="bd" viewBox="-10 -4 120 108"></svg>
+<div class="card row" id="pw"></div>
+<div class="card" id="info"></div>
+<div class="card"><b>Registro</b><div id="log"></div></div>
+<div class="card row">
+<label><input type="checkbox" id="ai"> Computador joga o Data center</label>
+<button id="mt">🔊 Som</button><button id="rs">Reiniciar</button><button id="hp">Regras</button></div>
+<div id="ov"><div id="ovc"></div></div>
+<script>
+const $=s=>document.querySelector(s);
+const G=(r,k)=>{const a=r,b=6-r;return[[a,a],[3,a],[b,a],[b,3],[b,b],[3,b],[a,b],[a,3]][k]};
+const XY=[],adj=[];
+for(let r=0;r<3;r++)for(let k=0;k<8;k++){const[x,y]=G(r,k);XY.push([8+x*14,8+y*14]);const n=r*8+k;
+ const a=[r*8+(k+1)%8,r*8+(k+7)%8];if(k%2){if(r>0)a.push(n-8);if(r<2)a.push(n+8)}adj.push(a)}
+const D=adj.map((_,s)=>{const d=Array(24).fill(99);d[s]=0;const q=[s];while(q.length){const u=q.shift();adj[u].forEach(v=>{if(d[v]>d[u]+1){d[v]=d[u]+1;q.push(v)}})}return d});
+const BASE={c:[6,7,0],d:[2,3,4]},GOAL={c:8,d:12},T={c:6,d:5},M={c:1,d:2},NAME={c:'Comunidade Anacé',d:'Data center'},COL={c:'var(--c)',d:'var(--d)'};
+const SRC={9:1,13:1};for(let i=16;i<24;i++)SRC[i]=2;
+const PWN={mutirao:'Mutirão: +1 de vida em todas as suas peças',bomba:'Bomba reforçada: próxima coleta +2 água, aquífero −2 extra',chuva:'Chuvarada: aquífero +3',cisterna:'Cisterna: reinicia o prazo dos seus carregadores'};
+let S,mute=false,AC;
+function snd(f,d=.12){if(mute)return;try{AC=AC||new AudioContext();const o=AC.createOscillator(),g=AC.createGain();o.frequency.value=f;g.gain.value=.05;o.connect(g);g.connect(AC.destination);o.start();o.stop(AC.currentTime+d)}catch(e){}}
+function init(){S={pcs:[],pud:{},cd:{},pw:{c:[],d:[]},sc:{c:0,d:0},aq:20,turn:'c',ply:0,sel:null,over:false,bomba:{c:0,d:0},items:{8:1,10:1,12:1,14:1},log:[]};
+ [6,7,0,5,15].forEach(n=>S.pcs.push({side:'c',node:n,hp:3,water:0,t:0}));
+ [2,3,4,1,11].forEach(n=>S.pcs.push({side:'d',node:n,hp:3,water:0,t:0}));
+ $('#ov').style.display='none';log('A disputa começa. Comunidade joga primeiro.');render()}
+const at=n=>S.pcs.find(p=>p.node==n);
+function log(m){S.log.unshift(m);$('#toast').textContent=m}
+function aqd(v){S.aq=Math.max(0,Math.min(20,S.aq+v))}
+function legal(p){return adj[p.node].filter(n=>{const o=at(n);return!o||o.side!=p.side})}
+const aiOn=()=>$('#ai').checked&&S.turn=='d';
+function click(n){if(S.over||aiOn())return;const o=at(n);
+ if(o&&o.side==S.turn){S.sel=o;snd(500,.05);render();return}
+ if(S.sel&&legal(S.sel).includes(n))act(S.sel,n)}
+function act(p,n){const me=p.side,o=at(n);S.sel=null;
+ if(o){let d=me=='d'?2:1+adj[p.node].filter(m=>{const q=at(m);return q&&q.side=='c'&&q!=p}).length;
+  o.hp-=d;log(`${NAME[me]} atacou (−${d} de vida)${me=='c'&&d>1?' com apoio do grupo':''}.`);snd(150,.15);
+  if(p.node>=16||o.node>=16){aqd(-1);log('A briga no centro desgastou o aquífero (−1).')}
+  if(o.hp<=0){if(o.water){S.pud[n]=(S.pud[n]||0)+o.water;log(`Carregador derrubado! Poça de ${o.water} água no chão.`)}else log('Uma peça foi eliminada.');S.pcs=S.pcs.filter(x=>x!=o)}}
+ else{p.node=n;
+  if(BASE[me].includes(n)&&p.water){S.sc[me]+=p.water;log(`${NAME[me]} entregou ${p.water} água na base!`);p.water=0;snd(800,.2)}
+  else if(!p.water){
+   if(S.pud[n]){p.water=S.pud[n];delete S.pud[n];p.t=T[me];log(`Poça recolhida: ${p.water} água.`);snd(600)}
+   else if(SRC[n]&&!S.cd[n]){let y=SRC[n]*M[me],c=y;if(S.bomba[me]){y+=2;c+=4;S.bomba[me]=0}
+    p.water=y;p.t=T[me];S.cd[n]=6;aqd(-c);log(`${NAME[me]} coletou ${y} água. Aquífero −${c}.`);snd(me=='d'?220:660,.25)}}
+  if(S.items[n]&&S.pw[me].length<2){delete S.items[n];const pool=me=='c'?['mutirao','mutirao','chuva','cisterna']:['bomba','bomba','chuva','cisterna'];
+   const it=pool[Math.random()*4|0];S.pw[me].push(it);log(`Power-up: ${PWN[it].split(':')[0]}.`);snd(900,.15)}}
+ endTurn()}
+function usePw(side,it){const i=S.pw[side].indexOf(it);if(i<0)return;S.pw[side].splice(i,1);
+ if(it=='mutirao')S.pcs.filter(p=>p.side==side).forEach(p=>p.hp=Math.min(3,p.hp+1));
+ if(it=='bomba')S.bomba[side]=1;if(it=='chuva')aqd(3);
+ if(it=='cisterna')S.pcs.filter(p=>p.side==side&&p.water).forEach(p=>p.t=T[side]);
+ log(`${NAME[side]} usou ${PWN[it].split(':')[0]}.`);snd(1000,.2);render()}
+function endTurn(){
+ S.pcs.filter(p=>p.side==S.turn&&p.water).forEach(p=>{if(--p.t<=0){p.water--;p.t=T[S.turn];log('Prazo estourou: 1 água evaporou.');snd(300,.1)}});
+ for(const k in S.cd)if(--S.cd[k]<=0)delete S.cd[k];
+ S.ply++;
+ if(S.ply%8==0){if(Math.random()<.5){aqd(-2);S.pcs.forEach(p=>p.water&&p.t>1&&p.t--);log('☀️ SECA: aquífero −2 e prazos mais curtos.')}else{aqd(3);log('🌧️ CHUVA: aquífero +3.')}}
+ const cnt=s=>S.pcs.filter(p=>p.side==s).length;
+ if(S.aq<=0)return fim(null);
+ if(S.sc.c>=GOAL.c)return fim('c');if(S.sc.d>=GOAL.d)return fim('d');
+ if(!cnt('c'))return fim('d');if(!cnt('d'))return fim('c');
+ S.turn=S.turn=='c'?'d':'c';render();if(aiOn())setTimeout(ai,800)}
+function fim(w){S.over=true;render();
+ const t=w?`<h2>Vitória: ${NAME[w]}</h2>`:'<h2>O aquífero secou. Os dois perderam.</h2>';
+ $('#ovc').innerHTML=t+`<p>Água entregue: Comunidade ${S.sc.c}, Data center ${S.sc.d}.</p><p style="font-size:12px;opacity:.8">Este é um protótipo que simplifica uma situação real e complexa no Porto do Pecém. Números e regras são fictícios e não foram checados com fatos atuais do caso.</p><button onclick="init()">Jogar de novo</button>`;
+ $('#ov').style.display='flex'}
+function ai(){if(S.over||S.turn!='d')return;
+ for(const it of [...S.pw.d]){if(it=='bomba'||(it=='chuva'&&S.aq<8)||(it=='cisterna'&&S.pcs.some(p=>p.side=='d'&&p.water&&p.t<=2))){usePw('d',it);break}}
+ let best,bs=-1e9;const tg=[...Object.keys(SRC).filter(n=>!S.cd[n]),...Object.keys(S.pud)].map(Number);
+ for(const p of S.pcs.filter(p=>p.side=='d'))for(const n of legal(p)){let s=Math.random()*6;const o=at(n);
+  if(o)s+=40+(o.water?40:0)+(o.hp<=2?20:0);
+  else if(p.water)s+=BASE.d.includes(n)?200:60-8*Math.min(...BASE.d.map(b=>D[n][b]));
+  else{s-=8*Math.min(...tg.map(t=>D[n][t]),20);if(S.pud[n])s+=130;else if(SRC[n]&&!S.cd[n]){s+=120;if(S.aq<7&&SRC[n]>1)s-=150}}
+  if(S.items[n])s+=25;if(s>bs){bs=s;best=[p,n]}}
+ if(best)act(...best);else endTurn()}
+const DECOR=`<defs><linearGradient id="bg" x1="0" x2="1"><stop offset="0" stop-color="#efd9a2"/><stop offset=".55" stop-color="#dcc08a"/><stop offset="1" stop-color="#b4c0c2"/></linearGradient><radialGradient id="aq"><stop offset="0" stop-color="#46c6ff" stop-opacity=".8"/><stop offset="1" stop-color="#1ea7e1" stop-opacity="0"/></radialGradient><radialGradient id="wg"><stop offset="0" stop-color="#9fe6ff"/><stop offset="1" stop-color="#1685c0"/></radialGradient><filter id="sh"><feDropShadow dx="0" dy=".6" stdDeviation=".6" flood-opacity=".5"/></filter></defs>
+<rect x="-10" y="-4" width="120" height="108" fill="url(#bg)"/>
+<circle cx="-4" cy="-1" r="6" fill="#ffd36b" opacity=".8"/>
+<rect x="8" y="8" width="84" height="84" rx="2" fill="#fff" opacity=".14"/><rect x="22" y="22" width="56" height="56" rx="2" fill="#fff" opacity=".12"/>
+<circle cx="50" cy="50" r="27" fill="url(#aq)"/><rect x="36" y="36" width="28" height="28" rx="2" fill="#1ea7e1" opacity=".18"/>
+<rect x="104" y="-4" width="6" height="108" fill="#2d7fae"/>
+<g stroke="#fff" fill="none" opacity=".55" stroke-width=".5"><path class="wv" d="M104 6q1.5-1.5 3 0t3 0"/><path class="wv" d="M104 30q1.5-1.5 3 0t3 0"/><path class="wv" d="M104 54q1.5-1.5 3 0t3 0"/><path class="wv" d="M104 78q1.5-1.5 3 0t3 0"/></g>
+<g fill="#a0693a"><path d="M-8 30L-4 20L0 30Z"/><path d="M-8 82L-4 72L0 82Z"/></g><g fill="#3b2412"><path d="M-5 30L-4 25L-3 30Z"/><path d="M-5 82L-4 77L-3 82Z"/></g>
+<g stroke="#3f7d4e" stroke-width="1.2" stroke-linecap="round" fill="none"><path d="M-4 14V3M-4 9H-7V6M-4 7H-1V4"/><path d="M-4 98V88M-4 94H-7V91M-4 92H-1V89"/></g>
+<rect x="95" y="36" width="8" height="28" fill="#59656f" stroke="#2f3840" stroke-width=".4"/><g fill="#ffe27a"><rect x="96.5" y="39" width="1.5" height="1.5"/><rect x="99.5" y="39" width="1.5" height="1.5"/><rect x="96.5" y="44" width="1.5" height="1.5"/><rect x="99.5" y="44" width="1.5" height="1.5"/><rect x="96.5" y="49" width="1.5" height="1.5"/><rect x="99.5" y="49" width="1.5" height="1.5"/><rect x="96.5" y="54" width="1.5" height="1.5"/><rect x="99.5" y="54" width="1.5" height="1.5"/></g>
+<g stroke="#d8832b" stroke-width=".9" fill="none"><path d="M95 24V6H106M100 6V24"/><path d="M95 96V78H106M100 78V96"/></g>`;
+function render(){
+ const bar=(v,m,c)=>`<div class="bar"><i style="width:${v/m*100}%;background:${c}"></i></div>`;
+ const aqc=S.aq>12?'#2e9d6b':S.aq>6?'#d9a21b':'#d33';
+ $('#top').innerHTML=['c','d'].map(s=>`<div class="sc"><span class="tag" style="background:${COL[s]}">${NAME[s]}</span> ${S.turn==s&&!S.over?'◀ vez':''}<div class="row">${bar(S.sc[s],GOAL[s],COL[s])}<b>${S.sc[s]}/${GOAL[s]}</b></div><small>Peças: ${S.pcs.filter(p=>p.side==s).length} · Pacote ${M[s]*1}-${M[s]*2} · Prazo ${T[s]}</small></div>`).join('')+
+ `<div style="width:100%" class="${S.aq<=6?'shake':''}"><b>Aquífero ${S.aq}/20</b> ${S.aq<=6?'⚠️ crítico':''}<div class="row">${bar(S.aq,20,aqc)}</div><small>Próximo evento (seca/chuva) em ${8-S.ply%8} jogadas</small></div>`;
+ const tg=S.sel?legal(S.sel):[];let h=DECOR;
+ const ln=[];adj.forEach((a,i)=>a.forEach(j=>{if(i<j)ln.push(`<line x1="${XY[i][0]}" y1="${XY[i][1]}" x2="${XY[j][0]}" y2="${XY[j][1]}" stroke="#8a6a3f" stroke-width="1.5" stroke-linecap="round" opacity=".8"/>`)}));h+=ln.join('');
+ XY.forEach(([x,y],n)=>{const b=BASE.c.includes(n)?'c':BASE.d.includes(n)?'d':null;
+  const src=SRC[n]&&!S.cd[n],dry=SRC[n]&&S.cd[n];
+  h+=`${src?`<circle class="pulse" cx="${x}" cy="${y}" r="5" fill="#46c6ff" opacity=".4"/>`:''}<circle cx="${x}" cy="${y}" r="3" fill="${src?'url(#wg)':dry?'#b9a27a':'#f3e6c4'}" stroke="${b?COL[b]:'#7a5a33'}" stroke-width="${b?1.8:.8}"/>`;
+  if(SRC[n])h+=`<text x="${x}" y="${y+1}" font-size="3" text-anchor="middle" fill="#fff">${SRC[n]}</text>`;
+  if(S.items[n])h+=`<text x="${x}" y="${y+1.4}" font-size="4.5" text-anchor="middle">⭐</text>`;
+  if(S.pud[n])h+=`<text x="${x+3}" y="${y-2}" font-size="4">💧${S.pud[n]}</text>`});
+ S.pcs.forEach(p=>{const[x,y]=XY[p.node];
+  h+=`<circle cx="${x}" cy="${y}" r="4" filter="url(#sh)" fill="${COL[p.side]}" stroke="${S.sel==p?'#ffd400':'#fff'}" stroke-width="${S.sel==p?1.6:.7}"/><text x="${x}" y="${y+1.6}" font-size="4.4" text-anchor="middle">${p.side=='c'?'🌿':'🏭'}</text><text x="${x}" y="${y+7.2}" font-size="2.8" fill="#d62b2b" stroke="#fff" stroke-width=".4" paint-order="stroke" text-anchor="middle">${'♥'.repeat(p.hp)}</text>`;
+  if(p.water)h+=`<rect x="${x-5}" y="${y-9}" width="10" height="4" rx="2" fill="var(--w)"/><text x="${x}" y="${y-6}" font-size="3" fill="#fff" text-anchor="middle">💧${p.water}·${p.t}</text>`});
+ tg.forEach(n=>{const[x,y]=XY[n],e=at(n);h+=`<circle class="pulse" cx="${x}" cy="${y}" r="5" fill="none" stroke="${e?'#ff3b3b':'#ffd400'}" stroke-width="1.5"/>`});
+ h+=XY.map(([x,y],n)=>`<circle data-n="${n}" cx="${x}" cy="${y}" r="6" fill="transparent" style="cursor:pointer"/>`).join('');
+ h+=`<text x="-5" y="50" font-size="3.2" font-weight="700" fill="#1f5c43" transform="rotate(-90 -5 50)" text-anchor="middle">ALDEIA ANACÉ</text><text x="107.5" y="50" font-size="3" font-weight="700" fill="#fff" transform="rotate(90 107.5 50)" text-anchor="middle">DATA CENTER · PORTO</text>`;
+ $('#bd').innerHTML=h;
+ $('#pw').innerHTML=`<b>Power-ups de ${NAME[S.turn]}:</b> `+(S.pw[S.turn].length&&!aiOn()?S.pw[S.turn].map(i=>`<button title="${PWN[i]}" onclick="usePw('${S.turn}','${i}')">${PWN[i].split(':')[0]}</button>`).join(''):'<small>nenhum (pegue ⭐ no tabuleiro, máx. 2)</small>');
+ const car=S.pcs.filter(p=>p.water).map(p=>`<span class="tag" style="background:${COL[p.side]}">${p.water} água · ${p.t} turnos · a ${Math.min(...BASE[p.side].map(b=>D[p.node][b]))} casas</span>`).join(' ');
+ $('#info').innerHTML=`<b>Entregas em andamento:</b> ${car||'<small>nenhuma</small>'}<br><small>${S.sel?'Toque numa casa brilhante para mover (amarelo) ou atacar (vermelho).':'Toque numa peça sua para começar.'}</small>`;
+ $('#log').innerHTML=S.log.slice(0,6).map(l=>`<div>${l}</div>`).join('')}
+$('#bd').addEventListener('click',e=>{const n=e.target.dataset.n;if(n!==undefined)click(+n)});
+$('#mt').onclick=()=>{mute=!mute;$('#mt').textContent=mute?'🔇 Mudo':'🔊 Som'};
+$('#rs').onclick=init;$('#ai').onchange=()=>{if(aiOn())setTimeout(ai,500);render()};
+function rules(){$('#ovc').innerHTML=`<h3>Como jogar</h3><p><b>Turno:</b> mova uma peça para uma casa vizinha ou ataque uma peça inimiga vizinha.</p><p><b>Coleta:</b> pise numa fonte azul (lagoas e aquífero central) para virar carregador. O aquífero cai na hora.</p><p><b>Entrega:</b> leve a água até uma casa da sua base (borda do seu lado). O prazo diminui a cada turno seu; ao zerar, 1 água evapora.</p><p><b>Combate:</b> Data center causa 2 de dano. Comunidade causa 1, mais 1 para cada aliado vizinho. Carregador derrubado deixa uma poça. Briga no centro desgasta o aquífero.</p><p><b>Fim:</b> meta de água (Comunidade 8, Data center 12), ou aquífero em zero e os dois perdem.</p><button onclick="$('#ov').style.display='none'">Entendi</button>`;$('#ov').style.display='flex'}
+$('#hp').onclick=rules;init();rules();
+</script></body></html>
