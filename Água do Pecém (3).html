@@ -1,0 +1,259 @@
+<!doctype html><html lang="pt-BR"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><title>Água do Pecém</title>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@500;800&family=Figtree:wght@400;600&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#06161d;--bg2:#0c2a33;--ink:#e8f3f0;--mut:#8fb0b4;--A:#8fd14f;--A2:#c98a3d;--D:#4cc9f0;--D2:#a78bfa;--W:#2ec4d6;--sand:#e9d8a6;color-scheme:dark;font-family:Figtree,system-ui,sans-serif}
+*{box-sizing:border-box}html,body{margin:0;min-height:100%;background:var(--bg);color:var(--ink)}
+body{background:radial-gradient(120% 80% at 50% 0,#0f3a42,var(--bg));padding:env(safe-area-inset-top,0) 0 env(safe-area-inset-bottom,0)}
+h1,h2,h3,h4{font-family:'Bricolage Grotesque',Figtree,sans-serif;margin:.2em 0}
+body{transition:background .5s}body[data-t=A]{--acc:var(--A);background:radial-gradient(120% 80% at 50% 0,#245a26,#07170c)}body[data-t=D]{--acc:var(--D);background:radial-gradient(120% 80% at 50% 0,#14507a,#06141f)}
+body[data-t] .b{background:var(--acc)}body[data-t] .b.gh{background:#16363f}body[data-t] .b.A{background:var(--A)}body[data-t] .b.D{background:var(--D)}
+body[data-t] #tp,body[data-t] #lf,body[data-t] #rt,body[data-t] #lg{border:2px solid var(--acc)}body[data-t=A] aside,body[data-t=A] #tp,body[data-t=A] #lg{background:#10281a}body[data-t=D] aside,body[data-t=D] #tp,body[data-t=D] #lg{background:#0b2438}
+.sc{min-height:100vh;padding:20px;animation:fi .4s}@keyframes fi{from{opacity:0}}
+.b{font:600 1rem Figtree,sans-serif;color:#041217;background:var(--W);border:0;border-radius:12px;padding:12px 20px;cursor:pointer;margin:4px;transition:transform .15s,filter .15s}
+.b:hover{filter:brightness(1.15);transform:translateY(-2px)}.b:active{transform:scale(.96)}.b:disabled{opacity:.4;pointer-events:none}.b:focus-visible,.mc:focus-visible{outline:3px solid #fff}
+.b.gh{background:#16363f;color:var(--ink)}.b.big{font-size:1.2rem;padding:16px 28px}.b.A{background:var(--A)}.b.D{background:var(--D)}
+.hero{max-width:900px;margin:0 auto;text-align:center}.hero h1{font-size:clamp(2.4rem,8vw,5rem);line-height:.95;letter-spacing:-.02em}
+.hero p{max-width:560px;margin:12px auto;color:var(--mut)}
+.cfg{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:16px;max-width:900px;margin:16px auto}
+.pn2{border-radius:20px;padding:18px;border:2px solid}.pn2.A{background:#16301a;border-color:var(--A)}.pn2.D{background:#0b2438;border-color:var(--D)}
+.cnt{display:flex;align-items:center;gap:12px;font-size:2rem;font-family:'Bricolage Grotesque'}.cnt .b{padding:4px 16px;font-size:1.5rem}
+input{width:100%;margin:4px 0;padding:8px 10px;border-radius:8px;border:1px solid #2f5560;background:#0a1f26;color:var(--ink);font:inherit}
+.sum{max-width:900px;margin:0 auto;background:#0e2a33;border-radius:16px;padding:14px;display:flex;gap:18px;flex-wrap:wrap;justify-content:center}
+.sum b{font-size:1.4rem;display:block;font-family:'Bricolage Grotesque'}
+.rules{max-width:760px;margin:0 auto;background:#0e2a33;border-radius:20px;padding:22px;min-height:340px}
+.flow{display:flex;flex-wrap:wrap;gap:6px;align-items:center;margin:12px 0}.flow span{padding:6px 10px;border-radius:10px;background:#173d47;font-size:.9rem}
+.flow .x{background:var(--A2);color:#111}.flow .s{background:var(--sand);color:#111}.flow .v{background:#2d5d9f}
+.gm{display:grid;grid-template-columns:230px minmax(0,1fr) 270px;grid-template-areas:"tp tp tp" "lf bd rt" "lg lg lg";gap:10px;max-width:1600px;margin:0 auto;padding:10px;min-height:100vh;align-content:start}
+#tp{grid-area:tp;display:grid;grid-template-columns:repeat(4,1fr);gap:14px;background:#0c2a33;border-radius:16px;padding:10px 14px}#lf{grid-area:lf}#rt{grid-area:rt}.bw{grid-area:bd}
+#lg{grid-area:lg;background:#0c2a33;border-radius:16px;padding:8px 14px;max-height:120px;overflow:auto;font-size:.85rem;color:var(--mut)}#lg p{margin:2px 0}
+.tm{border-radius:14px;padding:8px 10px;border:2px solid}.tm.A{background:#16301a;border-color:var(--A)}.tm.D{background:#0b2438;border-color:var(--D)}.tm h4,.tm p{margin:2px 0}.chips{display:flex;gap:6px;flex-wrap:wrap;margin-top:4px}.ch{font-size:.8rem;padding:2px 8px;border-radius:10px;background:#06161d}
+@media(max-width:1000px){.gm{grid-template-columns:1fr;grid-template-areas:"tp" "bd" "rt" "lf" "lg"}#tp{grid-template-columns:1fr}}
+.bw{background:linear-gradient(160deg,#0f3d3a,#0a2330);border-radius:20px;padding:6px;border:1px solid #1d5560}
+#bd{width:100%;height:auto;display:block}
+aside{background:#0c2a33;border-radius:20px;padding:14px;display:flex;flex-direction:column;gap:10px}
+.tb{padding:10px 12px;border-radius:12px;font-weight:600}.tb.A{background:#27501f}.tb.D{background:#12466a}
+.bar{height:12px;border-radius:8px;background:#06161d;overflow:hidden}.bar i{display:block;height:100%;transition:width .5s}
+.mc{display:flex;align-items:center;gap:8px;width:100%;margin:3px 0;border-radius:12px;border:2px solid;background:#0a1f26;color:var(--ink);cursor:pointer;padding:4px;font:600 .9rem Figtree}.mc svg{width:60px}
+.mc.G,.card.G{border-color:var(--sand)}.mc.A,.card.A{border-color:var(--A)}.mc.D,.card.D{border-color:var(--D)}
+.log{font-size:.82rem;color:var(--mut);max-height:130px;overflow:auto}.log p{margin:2px 0}
+.mb{position:fixed;inset:0;background:rgba(2,10,14,.8);backdrop-filter:blur(4px);display:grid;place-items:center;z-index:9;padding:12px;animation:fi .25s}.mb.solid{background:#04141a}
+.md{background:#0f2f38;border:1px solid #2a6572;border-radius:22px;padding:22px;max-width:520px;width:100%;max-height:92vh;overflow:auto;text-align:center;animation:pop .3s}@keyframes pop{from{transform:scale(.9)}}
+.die{width:84px;height:84px;margin:10px auto;background:#f6f1e3;border-radius:16px;display:grid;grid-template:repeat(3,1fr)/repeat(3,1fr);padding:10px;box-shadow:0 6px 0 #b9ae93}.die i{border-radius:50%;margin:3px}.die i.on{background:#10252b}
+.roll{animation:sh .16s infinite}@keyframes sh{50%{transform:rotate(14deg) scale(1.08)}}
+.vs{display:flex;justify-content:space-around;align-items:center;gap:6px}.side{flex:1;border-radius:14px;padding:8px;font-weight:600}.side.A{background:#27501f}.side.D{background:#12466a}
+.tg{padding:2px 10px;border-radius:20px;font-weight:600;font-size:.9rem}.tg.A{background:var(--A);color:#10210a}.tg.D{background:var(--D);color:#03202b}
+.card{border:3px solid;border-radius:18px;padding:12px;background:#0a1f26;text-align:center;margin:6px 0}.card svg{width:150px}
+.big{font-size:1.2rem}.hint,p{line-height:1.45}
+.rl{display:flex;align-items:center;gap:10px}.rl .die{margin:0;transform:scale(.6);transform-origin:left}
+.pw{transition:transform .3s ease;cursor:pointer}.pw.dim{opacity:.35}.pw.mv .tk{filter:drop-shadow(0 0 7px #fff);animation:bob 1s infinite}@keyframes bob{50%{transform:translateY(-4px)}}
+.pw.tg .ring{display:block;animation:pl 1s infinite}.ring{display:none}@keyframes pl{50%{r:26;opacity:.4}}
+.pw.sel .ring{display:block}.dst{stroke:#fff!important;stroke-width:4!important}
+.pa{fill:#8fd14f;stroke:#173d0f;stroke-width:3}.pd{fill:#4cc9f0;stroke:#06304a;stroke-width:3}
+.pn{font:800 11px Figtree;text-anchor:middle;fill:#08202a;pointer-events:none}.cb{fill:#2ec4d6;stroke:#fff}.cn{font:800 10px Figtree;text-anchor:middle;fill:#031;pointer-events:none}
+.pnum{font:800 9px Figtree;text-anchor:middle;fill:#fff;pointer-events:none}.cl{stroke:#06161d;stroke-width:3}.ct{font:600 9px Figtree;text-anchor:middle;fill:#06161d;pointer-events:none}
+.die.A{background:var(--A);box-shadow:0 6px 0 #4a7a22}.die.D{background:var(--D);box-shadow:0 6px 0 #2a8bb0}.dr{display:flex;justify-content:center;gap:12px}
+#mu{position:fixed;bottom:calc(env(safe-area-inset-bottom,0px) + 10px);right:10px;z-index:20;width:40px;height:40px;border-radius:50%;border:2px solid #2f5560;background:#0c2a33;color:var(--ink);font-size:18px;cursor:pointer;opacity:.9}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+</style></head><body><div id="app"></div><div id="ov"></div><button id="mu" aria-label="Som" title="Som"></button>
+<script>
+/* Decisões de regra (ambiguidades):
+ - Água inicial = soma das metas das duas equipes. Movimento sempre exato; com vários adversários na casa, o combate é contra um sorteado.
+ - Peão pode parar em casa com aliado; combate só ao terminar em casa com adversário.
+ - Escudo: ninguém pode terminar movimento sobre peão com escudo; dura até o início do próximo turno do dono.
+ - Paralisia: dura o próximo turno da equipe do peão. Energia renovável/Coleta ampliada: consumidas no próximo uso do peão.
+ - Memória do território: peão com água na volta vai à base e entrega a carga. Mobilização: avança até 6 casas, parando no reservatório/base.
+ - Combate também dá carta se o defensor vencer. CPU não implementada. */
+const $=s=>document.querySelector(s),ov=$('#ov'),NS='http://www.w3.org/2000/svg';
+const sleep=ms=>new Promise(r=>setTimeout(r,ms)),rnd=n=>Math.random()*n|0;
+const TN={A:'Anacé',D:'Data Center'},OPP=t=>t=='A'?'D':'A',tag=t=>`<span class="tg ${t}">${TN[t]}</span>`;
+const seq=(p,n)=>Array.from({length:n},(_,i)=>p+(i+1)),SH=seq('S',6),VS=seq('V',27),END=42,EVT=new Set(['S4','V7','V14','V21']);
+const ROUTE={A:[...seq('A',2),...SH,'R',...VS,...seq('VA',5)],D:[...seq('D',2),...SH,'R',...VS,...seq('VD',5)]};
+const cellId=(t,s)=>(s>=1&&s<END&&s!=9)?ROUTE[t][s-1]:null;
+const P={bA:[95,170],bD:[390,470],R:[850,250],A1:[232,170],A2:[311,170],D1:[390,350],D2:[390,262]};
+SH.forEach((c,i)=>P[c]=[390+62*i,170]);
+const RT={V:[[850,360],[620,360],[585,385],[585,435],[620,460],[855,460],[890,485],[890,535],[855,575],[800,590],[700,575],[600,592],[500,575],[400,592],[300,575],[200,592],[120,585]],VA:[[120,585],[60,530],[55,430],[55,330],[70,262]],VD:[[120,585],[170,545],[170,490],[220,455],[290,470]]};
+Object.entries({V:[27,0],VA:[5,1],VD:[5,1]}).forEach(([k,[n,o]])=>{const a=RT[k],d=[0];for(let i=1;i<a.length;i++)d.push(d[i-1]+Math.hypot(a[i][0]-a[i-1][0],a[i][1]-a[i-1][1]));
+for(let j=1;j<=n;j++){const t=d[d.length-1]*(j-1+o)/(n-1+o);let i=1;while(d[i]<t-1e-6)i++;const u=(t-d[i-1])/(d[i]-d[i-1]);P[k+j]=[a[i-1][0]+(a[i][0]-a[i-1][0])*u,a[i-1][1]+(a[i][1]-a[i-1][1])*u].map(Math.round)}});
+const CARDS={
+para:{n:'Paralisação emergencial',c:'G',cat:'Geral',e:'Escolha um peão adversário. Ele não poderá se mover no próximo turno da equipe dele.',w:'Precisa de um peão adversário que ainda não esteja paralisado.'},
+esc:{n:'Escudo de proteção',c:'G',cat:'Geral',e:'Escolha um peão aliado. Ele fica imune a combates por uma rodada.',w:'Precisa de um peão aliado sem escudo.'},
+rou:{n:'Roubo de água',c:'G',cat:'Geral',e:'Role um dado e roube esse valor do reservatório do adversário (a água que ele já entregou).',w:'Precisa de água já entregue pelo adversário.'},
+mob:{n:'Mobilização popular',c:'A',cat:'Exclusiva do Anacé',e:'Escolha um peão aliado. Ele avança imediatamente 6 casas (para antes, se chegar ao reservatório ou à base).',w:'Precisa de um peão aliado que possa avançar.'},
+mem:{n:'Memória do território',c:'A',cat:'Exclusiva do Anacé',e:'Escolha um peão aliado que carrega água na volta. Ele vai direto à base e entrega a carga.',w:'Precisa de um aliado carregando água na rota de volta.'},
+ene:{n:'Uso de energia renovável',c:'D',cat:'Exclusiva do DC',e:'Escolha um peão do DC. No próximo movimento dele, o dado vale o dobro.',w:'Precisa de um peão do DC sem este efeito.'},
+col:{n:'Coleta ampliada',c:'D',cat:'Exclusiva do DC',e:'Escolha um peão do DC. Na próxima coleta, ele leva o dobro da capacidade normal. Só vale para peões que ainda não chegaram ao reservatório.',w:'Precisa de um peão do DC antes do reservatório (ida ou na base) sem este efeito.'}};
+const POOL={A:['para','esc','rou','mob','mem'],D:['para','esc','rou','ene','col']};
+const ART={para:'<circle cx="60" cy="45" r="30" fill="none" stroke="#ffb703" stroke-width="6"/><rect x="48" y="30" width="9" height="30" fill="#ffb703"/><rect x="65" y="30" width="9" height="30" fill="#ffb703"/>',
+esc:'<path d="M60 8 92 20V46C92 66 76 78 60 84 44 78 28 66 28 46V20Z" fill="#2ec4d6" stroke="#fff" stroke-width="3"/><path d="M60 26C50 42 50 52 60 58 70 52 70 42 60 26Z" fill="#fff"/>',
+rou:'<path d="M50 8C32 34 28 48 40 60 48 68 60 68 66 60 76 48 72 34 50 8Z" fill="#2ec4d6"/><path d="M78 30V70M66 58 78 72 90 58" stroke="#ff5d5d" stroke-width="7" fill="none"/>',
+mob:'<circle cx="35" cy="32" r="9" fill="#8fd14f"/><circle cx="60" cy="26" r="10" fill="#c98a3d"/><circle cx="85" cy="32" r="9" fill="#8fd14f"/><path d="M20 78C22 52 48 52 50 78M45 80C46 50 74 50 75 80M70 78C72 52 98 52 100 78" fill="#6aa83a"/>',
+mem:'<path d="M56 85 58 50 62 85Z" fill="#c98a3d"/><path d="M60 52C20 54 22 14 60 10 98 14 100 54 60 52Z" fill="#8fd14f"/><path d="M60 85C40 86 30 80 22 84M60 85C80 86 90 80 98 84" stroke="#5b8a35" stroke-width="3" fill="none"/>',
+ene:'<circle cx="60" cy="45" r="16" fill="#ffd166"/><path d="M60 12V22M60 68V78M27 45H37M83 45H93M37 22 44 29M83 68 76 61M83 22 76 29M37 68 44 61" stroke="#ffd166" stroke-width="5"/><path d="M56 30 50 48H60L56 62 70 42H60L66 30Z" fill="#4cc9f0"/>',
+col:'<path d="M42 10C26 36 22 48 32 58 40 66 50 66 54 58 62 48 58 34 42 10Z" fill="#4cc9f0"/><path d="M78 30C62 54 60 66 68 74 76 80 88 78 92 70 98 58 92 48 78 30Z" fill="#2ec4d6"/><path d="M20 78H44M32 66V90" stroke="#fff" stroke-width="5"/>'};
+const artS=k=>`<svg viewBox="0 0 120 90">${ART[k]}</svg>`;
+const cardF=k=>`<div class="card ${CARDS[k].c}">${artS(k)}<h3>${CARDS[k].n}</h3>${CARDS[k].c=='G'?'<span class="tg" style="background:var(--sand);color:#222">Geral</span>':tag(CARDS[k].c)}<p>${CARDS[k].e}</p></div>`;
+const dieH=(n,c)=>`<div class="die ${c||''}">${Array.from({length:9},(_,i)=>`<i${[[],[4],[0,8],[0,4,8],[0,2,6,8],[0,2,4,6,8],[0,2,3,5,6,8]][n].includes(i)?' class="on"':''}></i>`).join('')}</div>`;
+let S=null,cfg={a:1,d:1,n:{A:[],D:[]},cpu:{A:false,D:false}},ruleI=0;
+const scr=h=>{document.body.removeAttribute('data-t');$('#app').innerHTML=`<section class="sc">${h}</section>`};
+const btn=id=>new Promise(r=>{$(id).onclick=r});
+function modal(h,b,solid){return new Promise(res=>{ov.innerHTML=`<div class="mb ${solid?'solid':''}"><div class="md">${h}<div class="bt">${b.map(x=>`<button class="b ${x.c||''}" data-k="${x.k}" ${x.d?'disabled':''}>${x.t}</button>`).join('')}</div></div></div>`;ov.querySelectorAll('.bt button').forEach(x=>x.onclick=()=>res(x.dataset.k))})}
+const closeM=()=>{ov.innerHTML=''};
+async function spin(ids,vals,c){ids.forEach(i=>$(i).classList.add('roll'));for(let j=0;j<9;j++){ids.forEach(i=>$(i).innerHTML=dieH(1+rnd(6),c));sfx('tick');await sleep(80)}ids.forEach((i,k)=>{$(i).classList.remove('roll');$(i).innerHTML=dieH(vals[k],c)})}
+
+/* ---------- áudio 8 bits ---------- */
+let AC=null,mg=null,mus=null,mute=false,ms=0,mt=0;try{mute=localStorage.getItem('pecem-mute')=='1'}catch(e){}
+const NF=n=>440*Math.pow(2,(n-69)/12),BS=[45,41,48,43],CH=[[69,72,76],[65,69,72],[72,76,79],[67,71,74]],MEL=[76,0,0,0,72,0,69,0,72,0,0,0,69,0,65,0,79,0,0,0,76,0,72,0,74,0,71,0,67,0,0,0];
+const SFX={click:[[660,0,.05]],tick:[[320,0,.03]],step:[[440,0,.06]],collect:[[523,0,.08],[659,.08,.08],[784,.16,.14]],deliver:[[523,0,.1],[659,.1,.1],[784,.2,.1],[1047,.3,.25]],fight:[[196,0,.12,'sawtooth'],[147,.12,.2,'sawtooth']],hit:[[150,0,.08],[90,.06,.14]],event:[[784,0,.08],[988,.08,.08],[784,.16,.08],[1175,.24,.2]],card:[[659,0,.07],[880,.07,.12]],win:[[523,0,.15],[659,.15,.15],[784,.3,.15],[1047,.45,.4]],lose:[[392,0,.2,'triangle'],[330,.2,.2,'triangle'],[262,.4,.4,'triangle']]};
+function tone(f,t,d,ty,v,o){const a=AC.createOscillator(),g=AC.createGain();a.type=ty;a.frequency.setValueAtTime(f,t);g.gain.setValueAtTime(v,t);g.gain.exponentialRampToValueAtTime(.0001,t+d);a.connect(g);g.connect(o||mg);a.start(t);a.stop(t+d+.02)}
+function sfx(n){if(!AC||mute)return;const t=AC.currentTime;(SFX[n]||[]).forEach(([f,s,d,ty])=>tone(f,t+s,d,ty||'square',.1))}
+function audio(){if(!AC){try{AC=new(window.AudioContext||window.webkitAudioContext)();mg=AC.createGain();mg.gain.value=mute?0:1;mg.connect(AC.destination);mus=AC.createGain();mus.gain.value=.35;mus.connect(mg);mt=AC.currentTime+.1;
+setInterval(()=>{if(mt<AC.currentTime)mt=AC.currentTime+.05;while(mt<AC.currentTime+.4){const i=ms%32,b=i>>3,d=.36;if(i%4==0)tone(NF(BS[b]),mt,d*3.6,'triangle',.5,mus);tone(NF(CH[b][[0,1,2,1,0,1,2,1][i%8]]),mt,d*.9,'square',.06,mus);if(MEL[i])tone(NF(MEL[i]),mt,d*1.8,'square',.09,mus);mt+=d;ms++}},120)}catch(e){AC=null}}if(AC&&AC.state=='suspended')AC.resume()}
+const mu=$('#mu');mu.textContent=mute?'🔇':'🔊';mu.onclick=()=>{audio();mute=!mute;if(mg)mg.gain.value=mute?0:1;mu.textContent=mute?'🔇':'🔊';try{localStorage.setItem('pecem-mute',mute?'1':'0')}catch(e){}};
+document.addEventListener('pointerdown',()=>audio());
+document.addEventListener('click',e=>{audio();if(e.target.closest('.b,.mc'))sfx('click')});
+/* ---------- telas ---------- */
+function title(){let sv=null;try{sv=localStorage.getItem('pecem2')}catch(e){}scr(`<div class="hero"><svg viewBox="0 0 800 300" style="width:100%;max-width:800px"><defs><linearGradient id="sk" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#16424d"/><stop offset="1" stop-color="#e08a3c"/></linearGradient></defs><rect width="800" height="300" rx="24" fill="url(#sk)"/><circle cx="400" cy="170" r="60" fill="#ffd166"/>
+<g fill="#16301a"><path d="M90 300V150" stroke="#16301a" stroke-width="8"/><path d="M90 150C40 130 20 150 10 170 50 150 70 150 90 150 120 120 160 120 180 140 150 130 120 140 90 150Z"/><path d="M190 300V190" stroke="#16301a" stroke-width="6"/><path d="M190 190C150 170 130 190 120 205 160 188 175 190 190 190 215 165 245 170 260 190 235 180 210 185 190 190Z"/></g>
+<g fill="#0b2438" stroke="#4cc9f0" stroke-width="2"><rect x="560" y="90" width="60" height="210"/><rect x="630" y="120" width="60" height="180"/><rect x="700" y="70" width="60" height="230"/></g><g fill="#4cc9f0"><rect x="570" y="110" width="40" height="5"/><rect x="570" y="140" width="40" height="5"/><rect x="640" y="150" width="40" height="5"/><rect x="710" y="100" width="40" height="5"/><rect x="710" y="130" width="40" height="5"/></g>
+<path d="M0 250C100 230 200 270 300 250S500 230 800 255V300H0Z" fill="#2ec4d6" opacity=".85"/><path d="M0 275C150 260 300 290 450 272S700 262 800 280V300H0Z" fill="#1c8ea0"/></svg>
+<h1>Água do Pecém</h1><p>Anacé e Data Center disputam a mesma água no Complexo do Pecém. Quem leva primeiro a sua meta para casa vence.</p>
+<button class="b big" id="st">Nova partida</button>${sv?'<button class="b big D" id="ct">Continuar partida</button>':''}<button class="b gh big" id="rl">Regras</button></div>`);
+$('#st').onclick=config;$('#rl').onclick=()=>{ruleI=0;rules()};if(sv)$('#ct').onclick=()=>{S=JSON.parse(sv);S.cpu=S.cpu||{A:0,D:0};S.busy=false;S.tg=null;S.sel=null;buildGame();startTurn(false)}}
+function config(){const col=t=>`<div class="pn2 ${t}"><h2>${TN[t]}</h2><input data-t="${t}" placeholder="${cfg.cpu[t]?'Computador':TN[t]}" value="${cfg.n[t][0]||''}" aria-label="Nome ${TN[t]}"><div><button class="b ${cfg.cpu[t]?'gh':t}" data-p="${t}0">Jogador</button><button class="b ${cfg.cpu[t]?t:'gh'}" data-p="${t}1">Computador</button></div><p>${t=='A'?5:3} peões, carga de até ${t=='A'?'6 (1 dado)':'12 (2 dados)'} por peão, meta de ${t=='A'?40:60} unidades.</p></div>`;
+scr(`<div class="hero"><h2>Dois lados, uma água</h2><p>Duas equipes. Um dos lados pode ser o computador.</p></div><div class="cfg">${col('A')}${col('D')}</div><div class="sum"><div><b>5 x 3</b>peões Anacé x DC</div><div><b>100</b>unidades no reservatório</div><div><b>40</b>meta Anacé</div><div><b>60</b>meta Data Center</div></div><div class="hero"><button class="b gh" id="bk">Voltar</button><button class="b big" id="go">Começar</button></div>`);
+document.querySelectorAll('[data-p]').forEach(b=>b.onclick=()=>{const t=b.dataset.p[0],c=b.dataset.p[1]=='1';cfg.cpu[t]=c;if(c)cfg.cpu[OPP(t)]=false;config()});
+document.querySelectorAll('input').forEach(i=>i.oninput=()=>{cfg.n[i.dataset.t][0]=i.value});$('#bk').onclick=title;$('#go').onclick=()=>{newGame();buildGame();startTurn(false)}}
+const RULES=[['Objetivo','Cada equipe leva água do reservatório compartilhado até a própria base. Vence quem entregar primeiro a sua meta.','<div class="flow"><span>Anacé: meta 40</span><span class="v">Data Center: meta 60</span></div>'],
+['Equipes e peões','O Anacé tem 5 peões e o Data Center tem 3. Ao coletar, o peão Anacé leva o valor de 1 dado (até 6) e o do Data Center a soma de 2 dados (até 12). Um dos lados pode ser o computador.','<div class="flow"><span class="x">5 peões Anacé, meta 40</span><span class="v">3 peões DC, meta 60</span></div>'],
+['Percurso','A ida tem 8 casas e a volta tem 32. São 4 casas douradas com ?, uma antes do reservatório e três depois. Elas sorteiam um evento de efeito imediato (o da casa antes do reservatório nunca envolve água).','<div class="flow"><span>Base</span><span class="x">2 exclusivas</span><span class="s">6 compartilhadas</span><span>Reservatório</span><span class="v">27 compartilhadas</span><span class="x">5 exclusivas</span><span>Base</span></div>'],
+['Movimentação','No seu turno, lance o dado, escolha um peão e avance exatamente o valor do dado. Ao chegar ao reservatório ou à base, o movimento termina.',''],
+['Coleta','No reservatório o peão lança os dados da sua equipe (1 no Anacé, 2 no Data Center) e coleta esse valor, se houver água. A água só conta para a meta quando chega à base.',''],
+['Combate','Se o seu peão termina em casa com um adversário e os dois carregam água, há combate: a cada rodada os dois lançam um dado e quem tirar mais rouba do outro essa quantidade de água. Empate repete a rodada. O combate dura até um peão zerar, que volta à base. Se o vencedor atinge a capacidade máxima (6 no Anacé, 12 no Data Center), o excedente é desperdiçado.',''],
+['Power-ups','Quem vence um combate ganha uma carta (máximo 2 na mão). Geral: Paralisação, Escudo, Roubo. Anacé: Mobilização, Memória do território. DC: Energia renovável, Coleta ampliada. Use quando quiser, no seu turno.',''],
+['Vitória','A partida acaba na hora em que uma equipe entrega a sua meta. O reservatório começa com 100 unidades. Se o reservatório chegar a 0, as duas equipes perdem.','']];
+function rules(){const r=RULES[ruleI];scr(`<div class="rules"><h2>${r[0]}</h2><p>${r[1]}</p>${r[2]}<p style="color:var(--mut)">${ruleI+1} de ${RULES.length}</p><button class="b gh" id="pv" ${ruleI?'':'disabled'}>Anterior</button><button class="b" id="nx">${ruleI<7?'Próxima':'Fechar'}</button></div>`);$('#pv').onclick=()=>{ruleI--;rules()};$('#nx').onclick=()=>{if(ruleI<7){ruleI++;rules()}else title()}}
+
+/* ---------- estado ---------- */
+function newGame(){const n=cfg.a+cfg.d,names={};['A','D'].forEach(t=>names[t]=[(cfg.n[t][0]||'').trim()||(cfg.cpu[t]?'Computador':TN[t])]);
+S={cpu:{...cfg.cpu},names,water:100,waste:0,w0:100,goal:{A:40,D:60},del:{A:0,D:0},pawns:[],turn:Math.random()<.5?'A':'D',idx:{A:0,D:0},phase:'roll',roll:0,hand:{A:[],D:[]},log:['Partida iniciada.'],st:{c:0,w:{A:0,D:0},t:0},won:null,sel:null,tg:null,busy:false};
+['A','D'].forEach(t=>{for(let i=0;i<(t=='A'?5:3);i++)S.pawns.push({id:t+(i+1),team:t,num:i+1,step:0,carry:0,shield:0,para:0,dobro:0,amp:0})})}
+const save=()=>{try{if(S&&!S.won)localStorage.setItem('pecem2',JSON.stringify({...S,tg:null,busy:false,sel:null}))}catch(e){}};
+const pawn=id=>S.pawns.find(p=>p.id==id),cap=p=>(p.team=='A'?6:12)*(p.amp?2:1),maxMv=p=>S.roll*(p.dobro?2:1);
+const log=m=>{S.log.unshift(m);S.log=S.log.slice(0,30)},curName=()=>S.names[S.turn][S.idx[S.turn]%S.names[S.turn].length];
+const loc=p=>(p.step==0||p.step==END)?'b'+p.team:p.step==9?'R':cellId(p.team,p.step),pawnsAt=id=>S.pawns.filter(p=>cellId(p.team,p.step)===id);
+function reach(p,max){let s=p.step+max;if(p.step<9&&s>=9)s=9;else if(p.step>=9&&s>=END)s=END;if(s==9&&S.water<=0)return[];const c=cellId(p.team,s);if(c&&pawnsAt(c).some(q=>q.team!=p.team&&q.shield))return[];return[{k:max,s}]}
+const canMove=p=>!p.para&&reach(p,maxMv(p)).length>0,movable=()=>S.pawns.filter(p=>p.team==S.turn&&canMove(p));
+function valid(k,t){const al=S.pawns.filter(p=>p.team==t),op=S.pawns.filter(p=>p.team!=t);return({para:()=>op.filter(p=>!p.para),esc:()=>al.filter(p=>!p.shield),rou:()=>S.del[OPP(t)]>0?[{id:'x'}]:[],
+mob:()=>al.filter(p=>!p.para&&reach(p,6).length),mem:()=>al.filter(p=>!p.para&&p.carry>0&&p.step>=10),ene:()=>al.filter(p=>!p.dobro),col:()=>al.filter(p=>!p.amp&&p.step<9)})[k]().map(p=>p.id)}
+
+/* ---------- tabuleiro ---------- */
+function boardSVG(){
+const q=k=>P[k].join(','),pts=a=>a.map(q).join(' '),L=[['#5b8f2e',['bA','A1','A2','S1']],['#1f7ea8',['bD','D1','D2','S1']],['#a8924f',[...SH,'R']],['#3f6d9f',['R',...VS]],['#5b8f2e',['V27',...seq('VA',5),'bA']],['#1f7ea8',['V27',...seq('VD',5),'bD']]];
+const palm=(x,y,k)=>`<g transform="translate(${x},${y}) scale(${k})"><path d="M0 0Q4-20 0-38" stroke="#8a5a2b" stroke-width="4" fill="none"/><path d="M0-38Q-18-44-26-30M0-38Q-8-56-20-56M0-38Q8-56 20-56M0-38Q18-44 26-30M0-38V-58" stroke="#5fa83a" stroke-width="4" stroke-linecap="round" fill="none"/></g>`;
+const hut=(x,y)=>`<g transform="translate(${x},${y})"><rect x="-16" y="-10" width="32" height="20" fill="#8a5a2b"/><path d="M-22-8 0-30 22-8Z" fill="#d2a85a"/><rect x="-4" y="0" width="8" height="10" fill="#3a2410"/></g>`;
+const tur=(x,y)=>`<g transform="translate(${x},${y})" stroke="#dfe8ea" stroke-width="3"><path d="M0 0V-46M0-46V-74M0-46 24-34M0-46-24-34"/></g>`;
+const ar=a=>a.slice(1).map((k,i)=>{const[x1,y1]=P[a[i]],[x2,y2]=P[k];if(Math.hypot(x2-x1,y2-y1)<50&&i%4!=3)return'';return`<path d="M-6-7L7 0-6 7Z" fill="#fff" opacity=".8" transform="translate(${(x1+x2)/2},${(y1+y2)/2}) rotate(${Math.atan2(y2-y1,x2-x1)*57.3})"/>`}).join('');
+const road=(w,c)=>L.map(([k,a])=>`<polyline points="${pts(a)}" fill="none" stroke="${c||k}" stroke-width="${w}" stroke-linecap="round" stroke-linejoin="round"/>`).join('');
+let h=`<defs><clipPath id="rc"><circle cx="850" cy="250" r="54"/></clipPath></defs><rect width="1000" height="640" fill="#1b3b2c"/>
+<path d="M430 0H1000V640H940C950 520 935 400 950 280 940 200 880 130 790 112 690 98 560 120 430 96Z" fill="#0e5a76"/><path d="M430 96C560 120 690 98 790 112 880 130 940 200 950 280 935 400 950 520 940 640" fill="none" stroke="#e9d8a6" stroke-width="5"/>
+<g stroke="#5fc3d8" opacity=".5" fill="none" stroke-width="2"><path d="M470 30q10-8 20 0t20 0M900 60q10-8 20 0t20 0M965 380q10-8 20 0t20 0M975 520q10-8 20 0t20 0"/></g>
+<rect x="602" y="40" width="14" height="66" fill="#78898f"/><rect x="560" y="34" width="100" height="12" fill="#9fb0b5"/><path d="M570 34V10L612 20M650 34V10L612 20" stroke="#ffb703" stroke-width="5" fill="none"/>
+<path d="M700 74H870L852 98H718Z" fill="#c24a3a"/><rect x="715" y="52" width="26" height="22" fill="#e9a23b"/><rect x="743" y="52" width="26" height="22" fill="#4cc9f0"/><rect x="771" y="52" width="26" height="22" fill="#8fd14f"/><rect x="820" y="40" width="20" height="34" fill="#dfe8ea"/>
+${Array.from({length:7},(_,i)=>`<rect x="${455+i*26}" y="120" width="22" height="14" fill="${['#e9a23b','#c24a3a','#4cc9f0','#8fd14f'][i%4]}"/>`).join('')}${tur(500,318)}${tur(575,322)}
+${[[40,95,.9],[130,420,1],[310,265,.8]].map(a=>palm(...a)).join('')}${[[125,335]].map(a=>hut(...a)).join('')}<path d="M188 300 225 276 262 300" fill="#8a5a2b"/><circle cx="225" cy="340" r="40" fill="#8a8f93" stroke="#5d6469" stroke-width="6"/><circle cx="225" cy="340" r="32" fill="#06222c"/><clipPath id="wc"><circle cx="225" cy="340" r="32"/></clipPath><rect id="wa" x="193" y="372" width="64" height="0" fill="#2ec4d6" clip-path="url(#wc)"/><text id="wA" x="225" y="349" fill="#fff" font-size="26" font-weight="800" text-anchor="middle" stroke="#06161d" stroke-width="4" style="paint-order:stroke">0</text>
+<g transform="translate(-177,76)"><clipPath id="tc"><rect x="662" y="338" width="50" height="112" rx="8"/></clipPath><rect x="656" y="332" width="62" height="124" rx="12" fill="#0e2f44" stroke="#9be7f0" stroke-width="3"/><rect id="wd" x="662" y="450" width="50" height="0" fill="#2ec4d6" clip-path="url(#tc)"/><path d="M662 366H672M662 394H672M662 422H672" stroke="#9be7f0" stroke-width="2"/><text id="wD" x="690" y="398" fill="#fff" font-size="24" font-weight="800" text-anchor="middle" stroke="#06161d" stroke-width="4" style="paint-order:stroke">0</text></g>`;
+h+=road(40,'#0a1a16')+road(32)+L.map(([,a])=>`<polyline points="${pts(a)}" fill="none" stroke="#fff" stroke-width="2" stroke-dasharray="8 10" opacity=".35"/>`).join('')+L.map(([,a])=>ar(a)).join('');
+Object.keys(P).filter(k=>k[0]!='b'&&k!='R').forEach(k=>{const f=/^VA|^A\d/.test(k)?'#8fd14f':/^VD|^D\d/.test(k)?'#4cc9f0':k[0]=='S'?'#e9d8a6':'#7fb2e5',r=k[0]=='V'?13:19,e=EVT.has(k),[x,y]=P[k];h+=`<circle id="c_${k}" cx="${x}" cy="${y}" r="${r}" fill="${e?'#ffb703':f}" stroke="#06161d" stroke-width="3"/><circle cx="${x}" cy="${y}" r="${r-6}" fill="none" stroke="#fff" stroke-width="2" opacity=".5"/>`+(e?`<text x="${x}" y="${y+6}" font-size="${r+2}" font-weight="800" text-anchor="middle" fill="#06161d" pointer-events="none">?</text>`:'')});
+const bld=(x,w,hh,c)=>`<rect x="${x}" y="${-hh}" width="${w}" height="${hh}" fill="#0b2740" stroke="${c}" stroke-width="2"/>`+Array.from({length:Math.floor(hh/16)},(_,i)=>`<rect x="${x+5}" y="${-hh+8+i*16}" width="${w-10}" height="4" fill="${i%2?'#a78bfa':c}"/>`).join('');
+h+=`<g transform="translate(95,170)"><rect x="-75" y="-62" width="150" height="124" rx="20" fill="#1c3d17" stroke="#8fd14f" stroke-width="3"/><g opacity=".5">${hut(-38,-14)}${hut(38,-14)}${palm(0,-4,.7)}</g></g>
+<g transform="translate(390,470)"><rect x="-65" y="-62" width="130" height="124" rx="10" fill="#0b2740" stroke="#4cc9f0" stroke-width="3"/><g transform="translate(0,16)">${bld(-52,30,72,'#4cc9f0')}${bld(-15,30,56,'#4cc9f0')}${bld(22,30,64,'#4cc9f0')}</g></g>
+<circle cx="850" cy="250" r="68" fill="#b8a56d"/><circle cx="850" cy="250" r="60" fill="#06222c" stroke="#2ec4d6" stroke-width="4"/><rect id="wr" x="796" y="304" width="108" height="0" fill="#2ec4d6" clip-path="url(#rc)"/><text x="850" y="261" id="wt" fill="#fff" font-size="32" font-weight="800" text-anchor="middle" stroke="#06161d" stroke-width="4" style="paint-order:stroke">0</text><g id="pl"></g>`;return h}
+function buildGame(){scr(`<div class="gm"><div id="tp"></div><aside id="lf"></aside><div class="bw"><svg id="bd" viewBox="0 0 1000 640" role="img" aria-label="Tabuleiro">${boardSVG()}</svg></div><aside id="rt"></aside><div id="lg"></div></div>`);
+S.pawns.forEach(p=>{const g=document.createElementNS(NS,'g');g.id='pw'+p.id;g.onclick=()=>clickPawn(p.id);$('#pl').appendChild(g)});refresh()}
+function renderPawns(){const grp={},tg=S.tg;S.pawns.forEach(p=>(grp[loc(p)]=grp[loc(p)]||[]).push(p));
+document.querySelectorAll('.dst').forEach(e=>e.classList.remove('dst'));if(S.sel){const q=pawn(S.sel);reach(q,maxMv(q)).forEach(r=>{const e=$('#c_'+cellId(q.team,r.s));if(e)e.classList.add('dst')})}
+Object.entries(grp).forEach(([k,a])=>a.forEach((p,i)=>{let[x,y]=P[k];if(k[0]=='b'){x+=(i-(a.length-1)/2)*27;y+=42}else if(k=='R'){const an=-2.6+i*.55;x+=76*Math.cos(an);y+=76*Math.sin(an)}else if(a.length>1)x+=(i-(a.length-1)/2)*15;
+const g=$('#pw'+p.id),mv=!tg&&!S.busy&&!S.cpu[S.turn]&&S.phase=='move'&&p.team==S.turn&&canMove(p),isT=tg&&tg.ids.includes(p.id);
+g.style.transform=`translate(${x}px,${y}px)`;g.setAttribute('class','pw'+(mv?' mv':'')+(S.sel==p.id?' sel':'')+(isT?' tg':'')+(tg&&!isT?' dim':''));
+g.innerHTML=`<circle class="ring" r="27" fill="none" stroke="#fff" stroke-width="3"/><g class="tk">`+(p.team=='A'?'<circle r="19" fill="#c98a3d" stroke="#fff3d0" stroke-width="2"/><circle r="14.5" fill="#2f6b24"/><path d="M0 9V-9M0 5-9-3M0 5 9-3M0 0-6-9M0 0 6-9" stroke="#eaffd0" stroke-width="2.4" stroke-linecap="round" fill="none"/>':'<polygon points="0,-20 17.3,-10 17.3,10 0,20 -17.3,10 -17.3,-10" fill="#0b2a44" stroke="#4cc9f0" stroke-width="3.5"/><rect x="-8" y="-8" width="16" height="16" rx="2" fill="none" stroke="#4cc9f0" stroke-width="2"/><path d="M-12-4H-8M-12 4H-8M8-4H12M8 4H12M-4-12V-8M4-12V-8M-4 8V12M4 8V12" stroke="#a78bfa" stroke-width="2"/><circle r="3" fill="#4cc9f0"/>')+`</g><g transform="translate(-14,15)"><circle r="8" fill="#06161d" stroke="${p.team=='A'?'#8fd14f':'#4cc9f0'}" stroke-width="2"/><text class="pnum" y="3.2">${p.num}</text></g>`+(p.carry?`<g transform="translate(14,-15)"><circle class="cb" r="10"/><text class="cn" y="3.5">${p.carry}</text></g>`:'')+(p.shield?'<circle r="24" fill="none" stroke="#2ec4d6" stroke-width="3" stroke-dasharray="5 3"/>':'')+(p.para?'<text y="-24" fill="#ffb703" font-weight="800" font-size="14" text-anchor="middle">II</text>':'')+((p.dobro||p.amp)?'<text y="32" fill="#ffd166" font-weight="800" font-size="12" text-anchor="middle">x2</text>':'')}))}
+function ctl(){if(S.cpu[S.turn]&&!S.tg)return'<p>Computador jogando…</p>';if(S.tg)return`<p class="big">Escolha um peão destacado para usar <b>${CARDS[S.tg.key].n}</b>.</p><button class="b gh" data-a="ctg">Cancelar</button>`;
+if(S.busy)return'<p>Aguarde…</p>';if(S.phase=='roll')return'<button class="b big" data-a="roll">Lançar o dado</button>';
+let h=`<div class="rl">${dieH(S.roll,S.turn)}<b>Dado: ${S.roll}</b></div>`;if(!movable().length)return h+'<p>Nenhum peão pode se mover agora.</p><button class="b" data-a="pass">Passar turno</button>';
+return h+`<p>Toque em um peão brilhante: ele anda exatamente ${S.roll} casas (o dobro com energia renovável).</p>`}
+const ht=()=>S.cpu.A?'D':S.cpu.D?'A':S.turn;
+function refresh(){if(!S||S.won)return;const t=S.turn;document.body.dataset.t=t;const h=ht(),hd=S.hand[h],br=(l,v,m,c)=>`<div><span>${l}: <b>${v}</b> de ${m}</span><div class="bar"><i style="width:${Math.min(100,100*v/m)}%;background:${c}"></i></div></div>`,
+tm=x=>`<div class="tm ${x}"><h4>${TN[x]}${S.cpu[x]?' (computador)':''}</h4><p>${S.names[x][0]}</p><p>Entregue: <b>${S.del[x]}</b> de meta ${S.goal[x]}</p><div class="chips">${S.pawns.filter(p=>p.team==x).map(p=>`<span class="ch">Peão ${p.num}: <b>${p.carry}</b></span>`).join('')}</div></div>`;
+$('#tp').innerHTML=br('Reservatório',S.water,S.w0,'var(--W)')+br(TN.A,S.del.A,S.goal.A,'var(--A)')+br(TN.D,S.del.D,S.goal.D,'var(--D)')+br('Desperdiçada',S.waste||0,S.w0,'#ff5d5d');
+$('#lf').innerHTML=`<h4>Cartas ${TN[h]} (${hd.length}/2)</h4>`+(hd.length?hd.map((k,i)=>`<button class="mc ${CARDS[k].c}" data-a="card" data-i="${i}">${artS(k)}<span>${CARDS[k].n}</span></button>`).join(''):'<p style="color:var(--mut)">Nenhuma carta.</p>');
+$('#rt').innerHTML=`<div class="tb ${t}">Vez: ${S.names[t][0]} (${TN[t]})</div>${ctl()}${tm(t)}`;$('#lg').innerHTML=S.log.slice(0,8).map(l=>`<p>${l}</p>`).join('');
+renderPawns();const f=S.water/S.w0,fa=Math.min(1,S.del.A/S.goal.A),fd=Math.min(1,S.del.D/S.goal.D),at=(i,y,v)=>{$(i).setAttribute('y',y);$(i).setAttribute('height',v)};
+at('#wr',304-108*f,108*f);at('#wa',372-64*fa,64*fa);at('#wd',450-112*fd,112*fd);$('#wt').textContent=S.water;$('#wA').textContent=S.del.A;$('#wD').textContent=S.del.D;save()}
+document.addEventListener('click',e=>{const b=e.target.closest('[data-a]');if(!b||!S)return;const a=b.dataset.a;
+if(a=='roll')doRoll();else if(a=='pass')endTurn();else if(a=='desel'){S.sel=null;refresh()}else if(a=='card')openCard(+b.dataset.i);else if(a=='ctg'){const r=S.tg.res;S.tg=null;refresh();r(null)}});
+
+/* ---------- turno ---------- */
+async function startTurn(fresh){if(fresh){S.pawns.filter(p=>p.team==S.turn).forEach(p=>p.shield=0);S.phase='roll'}refresh();
+if(S.cpu[S.turn])cpuTurn()}
+async function doRoll(){if(S.busy||S.phase!='roll')return;S.busy=true;const v=1+rnd(6);
+const cpu=S.cpu[S.turn],mp=modal(`<h3>${TN[S.turn]} lança o dado</h3><div id="d1">${dieH(1,S.turn)}</div><p class="big" id="rs">&nbsp;</p>`,cpu?[]:[{k:'r',t:'Lançar'}]);if(cpu)await sleep(300);else await mp;await spin(['#d1'],[v],S.turn);$('#rs').textContent=`Resultado: ${v}`;
+if(cpu)await sleep(900);else{ov.querySelector('.bt').innerHTML='<button class="b" id="cn">Continuar</button>';await btn('#cn')}closeM();S.roll=v;S.phase='move';S.busy=false;log(`${TN[S.turn]} tirou ${v}.`);refresh()}
+function clickPawn(id){if(S.tg){if(!S.tg.ids.includes(id))return;const r=S.tg.res;S.tg=null;refresh();r(id);return}
+const p=pawn(id);if(S.busy||S.cpu[S.turn]||S.phase!='move'||p.team!=S.turn||!canMove(p))return;doMove(p)}
+async function doMove(p){S.busy=true;if(S.cpu[p.team]){const c=S.cm=S.cm||{A:[],D:[]};c[p.team]=[...c[p.team],p.id].slice(-3)}S.sel=null;refresh();await go(p,reach(p,maxMv(p))[0].s);p.dobro=0;S.busy=false;if(!S.won)endTurn()}
+async function go(p,s){for(let t=p.step+1;t<=s;t++){p.step=t;sfx('step');renderPawns();await sleep(170)}await land(p)}
+async function land(p){if(S.won)return;if(p.step==9){await collect(p);refresh();await sleep(300)}
+else if(p.step==END){sfx('deliver');S.del[p.team]+=p.carry;log(`Peão ${p.id} entregou ${p.carry}.`);p.carry=0;p.step=0;p.amp=0;refresh();await sleep(300);if(S.del[p.team]>=S.goal[p.team])victory(p.team)}
+else{const c=cellId(p.team,p.step);if(!p.shield&&p.carry){const o=pawnsAt(c).filter(q=>q.team!=p.team&&q.carry);if(o.length){await fight(p,o[rnd(o.length)]);return}}if(EVT.has(c))await evento(p)}}
+async function collect(p){const n=p.team=='A'?1:2,m=p.amp?2:1,cpu=S.cpu[S.turn],ids=Array.from({length:n},(_,i)=>'#k'+i),
+mp=modal(`<h3>Coleta no reservatório</h3><p>Peão ${p.id}: ${n==1?'1 dado (até 6)':'2 dados (até 12)'}${m>1?', valor dobrado':''}.</p><div class="dr">${ids.map((x,i)=>`<div id="k${i}">${dieH(1,S.turn)}</div>`).join('')}</div><p class="big" id="rs">&nbsp;</p>`,cpu?[]:[{k:'r',t:'Lançar'}]);
+if(cpu)await sleep(300);else await mp;const v=ids.map(()=>1+rnd(6));await spin(ids,v,S.turn);const t=v.reduce((a,b)=>a+b)*m,g=Math.min(t,S.water);
+$('#rs').textContent=`Sorteado: ${t}${g<t?` (só havia ${g} no reservatório)`:''}`;if(cpu)await sleep(900);else{ov.querySelector('.bt').innerHTML='<button class="b" id="cn">Continuar</button>';await btn('#cn')}closeM();sfx('collect');p.carry=g;S.water-=g;p.amp=0;log(`Peão ${p.id} coletou ${g}.`);if(S.water<=0)derrota()}
+const EVS={vento:['Vento a favor','O peão avança 3 casas.'],obst:['Obstrução na via','O peão recua 3 casas.'],ach:['Achado inesperado','A equipe ganha uma carta.'],chuva:['Chuva inesperada','O reservatório recebe +8 unidades de água.'],vaz:['Vazamento','O peão perde até 2 unidades da carga, devolvidas ao reservatório.']};
+async function evento(p){const ks=p.step<9?['vento','obst','ach']:['chuva','vaz','vento','obst','ach'],k=ks[rnd(ks.length)],[n,e]=EVS[k],t=p.team,cpu=S.cpu[S.turn],mp=modal(`<h3>Evento inesperado!</h3><h4>${n}</h4><p>${e}</p><p>${tag(t)} peão ${p.id}</p>`,cpu?[]:[{k:'o',t:'Continuar',c:t}]);
+sfx('event');if(cpu)await sleep(1500);else await mp;closeM();log(`Evento (${n}) com o peão ${p.id}.`);
+if(k=='chuva')S.water=Math.min(S.w0,S.water+8);else if(k=='vaz'){const x=Math.min(2,p.carry);p.carry-=x;S.water+=x}else if(k=='vento'){const r=reach(p,3);if(r.length){refresh();await go(p,r[0].s)}}else if(k=='ach')await reward(t);else p.step=Math.max(p.step-3,p.step<9?1:10);refresh()}
+async function roubo(t){const o=OPP(t),cpu=S.cpu[t],mp=modal(`<h3>Roubo de água</h3><div id="d1">${dieH(1,t)}</div><p class="big" id="rs">&nbsp;</p>`,cpu?[]:[{k:'r',t:'Lançar'}]);
+if(cpu)await sleep(300);else await mp;const v=1+rnd(6);await spin(['#d1'],[v],t);const n=Math.min(v,S.del[o]);S.del[o]-=n;S.del[t]+=n;$('#rs').textContent=`Tirou ${v}: ${TN[t]} rouba ${n} do reservatório de ${TN[o]}.`;
+if(cpu)await sleep(1200);else{ov.querySelector('.bt').innerHTML='<button class="b" id="cn">Continuar</button>';await btn('#cn')}closeM();log(`${TN[t]} roubou ${n} do reservatório de ${TN[o]}.`);if(S.del[t]>=S.goal[t])victory(t)}
+function derrota(){S.won='N';sfx('lose');try{localStorage.removeItem('pecem2')}catch(e){}closeM();scr(`<div class="hero"><h1>Os dois perdem!</h1><p>O reservatório secou antes de qualquer equipe cumprir a meta.</p><div class="sum"><div><b>${S.del.A} de ${S.goal.A}</b>Anacé</div><div><b>${S.del.D} de ${S.goal.D}</b>Data Center</div><div><b>${S.st.c}</b>combates</div></div><br><button class="b big" id="nw">Nova partida</button></div>`);$('#nw').onclick=()=>{S=null;title()}}
+async function fight(a,d){const ps=[a,d];sfx('fight');let rd=1,ex=0;
+ov.innerHTML=`<div class="mb"><div class="md"><h3>Combate!</h3><div class="vs">${ps.map(p=>`<div class="side ${p.team}">${TN[p.team]}<br>Peão ${p.id}<div id="d${p.team}">${dieH(1)}</div>Água: <b id="s${p.team}">${p.carry}</b> / ${cap(p)}<div id="b${p.team}" style="min-height:52px"></div></div>`).join('<b>×</b>')}</div><p id="cm"></p><div class="bt" id="bt"></div></div></div>`;
+while(a.carry>0&&d.carry>0){$('#cm').textContent=`Rodada ${rd}: cada equipe lança o seu dado.`;const v={};
+await Promise.all(ps.map(async p=>{const t=p.team;if(S.cpu[t])await sleep(700);else{$('#b'+t).innerHTML=`<button class="b ${t}" id="r${t}">Lançar dado</button>`;await btn('#r'+t);$('#b'+t).innerHTML=''}await spin(['#d'+t],[v[t]=1+rnd(6)])}));
+if(v.A==v.D){$('#cm').textContent='Empate! A rodada se repete.';await sleep(1200);continue}
+const w=v.A>v.D?'A':'D',W=ps.find(p=>p.team==w),L=ps.find(p=>p.team!=w),n=Math.min(v[w],L.carry),g=Math.min(n,cap(W)-W.carry),e=n-g;L.carry-=n;W.carry+=g;ex+=e;S.waste=(S.waste||0)+e;
+sfx('hit');$('#s'+L.team).textContent=L.carry;$('#s'+W.team).textContent=W.carry;$('#cm').textContent=`${TN[w]} vence a rodada (${v.A} x ${v.D}) e tira ${n} de água.${e?` ${e} excedente(s) desperdiçada(s).`:''}`;rd++;await sleep(1500)}
+const L=a.carry?d:a,W=L==a?d:a;L.step=0;L.dobro=L.amp=0;S.st.c++;S.st.w[W.team]++;log(`Combate: ${W.id} venceu ${L.id}${ex?`; ${ex} de água desperdiçada`:''}.`);
+$('#cm').innerHTML=`<b>${TN[W.team]} vence o combate!</b> O peão ${L.id} zerou e volta à base.${ex?` ${ex} unidade(s) excedente(s) foram desperdiçadas.`:''}`;$('#bt').innerHTML='<button class="b" id="cn">Continuar</button>';await btn('#cn');closeM();refresh();await reward(W.team)}
+function endTurn(){if(S.won)return;S.pawns.filter(p=>p.team==S.turn).forEach(p=>p.para=Math.max(0,p.para-1));S.idx[S.turn]++;S.turn=OPP(S.turn);S.st.t++;S.phase='roll';S.sel=null;startTurn(true)}
+
+const cpuTarget=(k,ids)=>{const ps=ids.map(pawn).sort((a,b)=>b.carry-a.carry||b.step-a.step);return(k=='esc'||k=='rou'||k=='para'?ps[0]:ps[rnd(ps.length)]).id};
+function cpuScore(p){const s=reach(p,maxMv(p))[0].s,c=cellId(p.team,s),T=p.team,en=S.pawns.filter(q=>q.team!=T&&q.carry>0);const ld=S.pawns.filter(q=>q.team==T&&q.carry>0).length;let v=s*.2-28*((S.cm&&S.cm[T]||[]).filter(i=>i==p.id).length);
+if(p.step==0)v+=30;
+if(s==END)v+=S.del[T]+p.carry>=S.goal[T]?1000:en.length?15:80;else if(s==9)v+=Math.max(30,170-45*ld);
+if(p.carry){v+=25;const hit=c?pawnsAt(c).filter(q=>q.team!=T&&q.carry&&!q.shield):[];if(hit.length)v+=160+4*Math.max(...hit.map(q=>q.carry));
+const ch=s>=10&&s<END?en.filter(q=>q.step>s&&q.step<=Math.min(s+6,36)):[];if(ch.length)v+=45-4*(Math.min(...ch.map(q=>q.step))-s)}
+return v+Math.random()*10}
+async function cpuTurn(){await sleep(800);const t=S.turn;for(const k of [...S.hand[t]]){if(S.won||S.turn!=t)return;if(S.phase=='roll'&&valid(k,t).length&&Math.random()<.7)await useCard(t,k,S.hand[t].indexOf(k))}
+if(S.won||S.turn!=t)return;if(S.phase=='roll')await doRoll();const m=movable();if(!m.length){await sleep(700);return endTurn()}await sleep(500);await doMove(m.map(p=>[cpuScore(p),p]).sort((a,b)=>b[0]-a[0])[0][1])}
+/* ---------- cartas ---------- */
+const pick=(ids,key)=>new Promise(res=>{S.tg={ids,res,key};refresh()});
+async function useCard(t,k,fromI){const pb=S.busy;S.busy=true;try{const ids=valid(k,t);if(!ids.length)return false;closeM();const cpu=S.cpu[t],id=k=='rou'?'x':cpu?cpuTarget(k,ids):await pick(ids,k);if(id==null)return false;const p=pawn(id)||{id:'x',team:OPP(t)};
+const ok=cpu?'y':await modal(`${cardF(k)}<p class="big">${k=='rou'?'Roubar água do reservatório do '+TN[OPP(t)]+'?':'Usar em '+TN[p.team]+', peão '+p.id+'?'}</p>`,[{k:'y',t:'Confirmar',c:t},{k:'n',t:'Cancelar',c:'gh'}]);closeM();if(ok!='y')return false;
+sfx('card');if(fromI!=null)S.hand[t].splice(fromI,1);log(`${TN[t]} usou ${CARDS[k].n}${k=='rou'?'':' em '+p.id}.`);
+if(k=='para')p.para=1;else if(k=='esc')p.shield=1;else if(k=='rou')await roubo(t);else if(k=='ene')p.dobro=1;else if(k=='col')p.amp=1;
+else if(k=='mob'){const r=reach(p,6);refresh();await go(p,r[r.length-1].s)}else if(k=='mem'){p.step=END;renderPawns();await sleep(400);await land(p)}
+return true}finally{S.busy=pb;refresh()}}
+async function openCard(i){if(S.busy||S.tg||S.won||S.cpu[S.turn])return;const t=S.turn,k=S.hand[t][i];if(!k)return;const v=valid(k,t).length,ok=v>0;
+const r=await modal(`${cardF(k)}<p><b>Condição:</b> ${CARDS[k].w}</p>${ok?'':'<p style="color:#ffb703">Não pode ser usada agora: nenhum peão válido.</p>'}`,[{k:'u',t:'Usar',c:t,d:!ok},{k:'b',t:'Voltar e guardar',c:'gh'}]);closeM();if(r=='u')await useCard(t,k,i)}
+async function reward(t){if(S.won)return;if(S.cpu[t]){if(S.hand[t].length<2){S.hand[t].push(POOL[t][rnd(5)]);log(`${TN[t]} ganhou uma carta.`)}refresh();return}const k=POOL[t][rnd(5)],h=S.hand[t];
+for(;;){const now=t==S.turn&&valid(k,t).length>0,full=h.length>=2;
+const b=full?[...h.map((c,i)=>({k:'s'+i,t:`Trocar por ${CARDS[c].n}`,c:'gh'})),{k:'d',t:'Descartar a nova',c:'gh'}]:[{k:'g',t:'Guardar na mão'}];if(now)b.unshift({k:'u',t:'Usar agora',c:t});
+const r=await modal(`<h3>${TN[t]} ganhou uma carta!</h3>${cardF(k)}<p>${full?'A mão está cheia (2/2). Troque uma carta ou descarte a nova.':'Guarde para usar depois ou use agora.'}</p>`,b);
+if(r=='g')h.push(k);else if(r[0]=='s'){h.splice(+r[1],1);h.push(k)}else if(r=='u'){closeM();if(!await useCard(t,k,null))continue}closeM();refresh();return}}
+
+/* ---------- vitória ---------- */
+function victory(t){S.won=t;sfx('win');try{localStorage.removeItem('pecem2')}catch(e){}closeM();
+scr(`<div class="hero"><h1 style="color:var(--${t})">${TN[t]} venceu!</h1><p>${t=='A'?'A água ficou no território.':'A infraestrutura foi abastecida.'}</p><div class="sum"><div><b>${S.del.A} de ${S.goal.A}</b>Anacé</div><div><b>${S.del.D} de ${S.goal.D}</b>Data Center</div><div><b>${S.st.c}</b>combates</div><div><b>${S.st.w.A} x ${S.st.w.D}</b>vitórias Anacé x DC</div><div><b>${S.st.t+1}</b>turnos</div></div><br><button class="b big" id="nw">Nova partida</button></div>`);$('#nw').onclick=()=>{S=null;title()}}
+title();
+</script></body></html>
